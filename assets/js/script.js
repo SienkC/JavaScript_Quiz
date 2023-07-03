@@ -55,7 +55,24 @@ startEl.addEventListener('click', function (event) {
     questions.style.display = "contents";
 
     // timer starts
+
     // show questions
+    showQuestions();
 
-
+    return;
     });
+
+
+    function showQuestions() {
+        // var counter = 0;
+
+        // while loop for # quests?
+        document.querySelector("#question").textContent = qAndA.q1.question;
+
+        // for loop that loops through questions?
+        var temp = document.createElement("li");
+        temp.textContent = qAndA.q1.correct;
+        document.querySelector("#answers").appendChild(temp);
+
+        return;
+    }
