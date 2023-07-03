@@ -76,14 +76,16 @@ startEl.addEventListener('click', function (event) {
         // randomize order of choices
         choices = shuffleArray(choices);
 
-
+        // Show question
         document.querySelector("#question").textContent = questionNum.question;
 
-        // for loop that loops through questions?
-        var temp = document.createElement("li");
-        temp.textContent = questionNum.correct;
-        document.querySelector("#answers").appendChild(temp);
-
+        // loop to create answer choices
+        for(let i = 0; i < choices.length; i++){
+            var temp = document.createElement("li");
+            temp.textContent = questionNum[choices[i]];
+            document.querySelector("#answers").appendChild(temp);
+        }
+        
         return;
     }
 
