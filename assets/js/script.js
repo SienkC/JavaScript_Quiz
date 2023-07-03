@@ -53,14 +53,17 @@ const qAndA = {
 // number of questions
 var numQuest = Object.keys(qAndA).length;
 
-// timer will count down from this number
-var timer = 75;
+// timer is not in a function so it can be used everywhere
+var timer;
 
 startEl.addEventListener('click', function (event) {
     // if start button pressed home page is replaced with questions
     event.preventDefault();
     main.style.display = "none";
     questions.style.display = "contents";
+
+    // Timer will count down from this number
+    timer = 75;
 
     // timer starts
     timeLeft();
@@ -77,8 +80,9 @@ startEl.addEventListener('click', function (event) {
 function timeLeft(){
     var timerInt = setInterval(function() {
 
-        timerEl.textContent = "Time: " + timer;
         timer--;
+        timerEl.textContent = "Time: " + timer;
+        
 
         // Stops timer when it reaches 0
         if(timer === 0){
