@@ -1,0 +1,4 @@
+/* hide questions on start */
+#display_questions{
+    display: none;
+}
