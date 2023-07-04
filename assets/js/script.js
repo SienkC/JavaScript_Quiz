@@ -91,10 +91,13 @@ startEl.addEventListener('click', function (event) {
 
     // loop for questions
     // var test = qAndA.q1;
-    for(let i = 0; i < allQuest.length; i++){
-        showQuestions(qAndA[allQuest[i]]);
-    }
-    
+    // for(let i = 0; i < allQuest.length; i++){
+    //     showQuestions(qAndA[allQuest[i]]);
+    // }
+    // test
+    showQuestions(qAndA[allQuest[0]]);
+
+
 
     return;
 });
@@ -129,10 +132,15 @@ function showQuestions(questionNum) {
     // loop to create answer choices
     for(let i = 0; i < choices.length; i++){
         var temp = document.createElement("li");
-        temp.textContent = questionNum[choices[i]];
         document.querySelector("#answers").appendChild(temp);
+        temp = document.createElement("button");
+        temp.textContent = questionNum[choices[i]];
+        temp.setAttribute("id", choices[i]);
+        document.querySelector("#answers").children[i].appendChild(temp);
+
+        // test
+        console.log(temp);
     }
-    
     return;
 }
 
