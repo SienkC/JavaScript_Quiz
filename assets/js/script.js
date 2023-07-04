@@ -10,6 +10,7 @@
 var startEl = document.querySelector("#start");
 var main = document.querySelector("#display_main_page");
 var questions = document.querySelector("#display_questions");
+var scoreEntry = document.querySelector("#display_end");
 var timerEl = document.querySelector("#time");
 
 const qAndA = {
@@ -72,7 +73,10 @@ startEl.addEventListener('click', function (event) {
     var endQuestions = setTimeout(function(){
         // user lost quiz
         // go to initials entry
-    }, timer);
+        questions.style.display = "none";
+        scoreEntry.style.display = "contents";
+
+    }, timer * 1000);
 
     // loop for questions
     var test = qAndA.q1;
