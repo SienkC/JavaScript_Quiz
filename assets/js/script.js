@@ -67,6 +67,12 @@ startEl.addEventListener('click', function (event) {
 
     // timer starts
     timeLeft();
+    
+    // When timer reaches 0 before user answers all questions
+    var endQuestions = setTimeout(function(){
+        // user lost quiz
+        // go to initials entry
+    }, timer);
 
     // loop for questions
     var test = qAndA.q1;
@@ -89,7 +95,7 @@ function timeLeft(){
             clearInterval(timerInt);
         }
 
-    }, 1000)
+    }, 1000);
 }
 
 function showQuestions(questionNum) {

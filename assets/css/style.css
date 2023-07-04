@@ -1,5 +1,6 @@
-/* hide questions on start */
-#display_questions{
+/* hide questions and score entry page on start */
+#display_questions,
+#display_end{
     display: none;
 }
 
