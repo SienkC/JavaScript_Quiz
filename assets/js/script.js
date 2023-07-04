@@ -53,7 +53,8 @@ const qAndA = {
 };
 
 // number of questions
-var numQuest = Object.keys(qAndA).length;
+// var numQuest = Object.keys(qAndA).length;
+var allQuest = ["q1", "q2", "q3", "q4", "q5"];
 
 // timer is not in a function so it can be used everywhere
 var timer;
@@ -77,8 +78,10 @@ startEl.addEventListener('click', function (event) {
         questions.style.display = "none";
         scoreEntry.style.display = "contents";
 
+        // display score
         document.querySelector("#final_score").textContent = "Your final score is " + timer;
 
+        // User submits initals
         submitE1.addEventListener('click', function (event) {
             // save initials typed in text box
             // go to highscores page
@@ -87,8 +90,11 @@ startEl.addEventListener('click', function (event) {
     }, timer * 1000);
 
     // loop for questions
-    var test = qAndA.q1;
-    showQuestions(test);
+    // var test = qAndA.q1;
+    for(let i = 0; i < allQuest.length; i++){
+        showQuestions(qAndA[allQuest[i]]);
+    }
+    
 
     return;
 });
