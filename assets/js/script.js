@@ -12,6 +12,7 @@ var main = document.querySelector("#display_main_page");
 var questions = document.querySelector("#display_questions");
 var scoreEntry = document.querySelector("#display_end");
 var timerEl = document.querySelector("#time");
+var submitE1 = document.querySelector("#submit");
 
 const qAndA = {
     q1: {
@@ -75,6 +76,13 @@ startEl.addEventListener('click', function (event) {
         // go to initials entry
         questions.style.display = "none";
         scoreEntry.style.display = "contents";
+
+        document.querySelector("#final_score").textContent = "Your final score is " + timer;
+
+        submitE1.addEventListener('click', function (event) {
+            // save initials typed in text box
+            // go to highscores page
+        });
 
     }, timer * 1000);
 
