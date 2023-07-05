@@ -142,7 +142,10 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
 
                     // user brought to end
                     showScoreEntry();
+                    return
                 }
+
+                showQuestions(qAndA[allQuest[index]], index, endQuestions, timerInt);
             });
         }
         // if user chooses a wrong answer
@@ -180,6 +183,8 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                     // user brought to end
                     showScoreEntry();
                 }
+
+                showQuestions(qAndA[allQuest[index]], index, endQuestions, timerInt);
             });
         }
         
