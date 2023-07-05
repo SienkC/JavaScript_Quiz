@@ -133,21 +133,22 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                 // index for question number increases
                 index++;
 
-                // check for if this is last question and end recursion
                 // end timer that calls and call for initial entry page
                 if(index === allQuest.length){
                     // clear both timers
                     clearTimeout(endQuestions);
                     clearInterval(timerInt);
 
-                    // user brought to end
+                    // user brought to end section
                     showScoreEntry();
                     return
                 }
 
+                // call next question
                 showQuestions(qAndA[allQuest[index]], index, endQuestions, timerInt);
             });
         }
+
         // if user chooses a wrong answer
         else{
             document.querySelector("#" + choices[i]).addEventListener('click', function(){
@@ -156,6 +157,8 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                 timer = timer - 10;
 
                 // fix prev timer for entry page to match new timer
+                clearTimeout(endQuestions);
+                endQuestions = setTimeout(showScoreEntry, timer * 1000);
 
                 // removes all created answer choices, so they wont be in next question
                 for(let i = 0; i < choices.length; i++){
@@ -184,6 +187,7 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                     showScoreEntry();
                 }
 
+                // call next question
                 showQuestions(qAndA[allQuest[index]], index, endQuestions, timerInt);
             });
         }
