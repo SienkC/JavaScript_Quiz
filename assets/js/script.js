@@ -89,15 +89,7 @@ startEl.addEventListener('click', function (event) {
 
     }, timer * 1000);
 
-    // loop for questions
-    // var test = qAndA.q1;
-    // for(let i = 0; i < allQuest.length; i++){
-    //     showQuestions(qAndA[allQuest[i]]);
-    // }
-    // test
     showQuestions(qAndA[allQuest[0]]);
-
-
 
     return;
 });
@@ -140,7 +132,26 @@ function showQuestions(questionNum) {
 
         // test
         console.log(temp);
+
+        // press button and remove recently added answers
+        // take note of right/wrong
+        // call function again with next question
+
+        // if user chooses correct answer
+        if(choices[i] === "correct"){
+            document.querySelector("#" + choices[i]).addEventListener('click', function(){
+                console.log(choices[i]);
+            });
+        }
+        // if user chooses a wrong answer
+        else{
+            document.querySelector("#" + choices[i]).addEventListener('click', function(){
+                console.log(choices[i]);
+            });
+        }
+        
     }
+
     return;
 }
 
