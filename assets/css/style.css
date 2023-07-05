@@ -4,3 +4,19 @@
     display: none;
 }
 
+button{
+    background-color: #483066;
+    color: #B49ED2;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+button:hover{
+    /* highlight */
+    background-color: #744fa1;
+}
+
+button:active{
+    /* shadow outline */
+    box-shadow: 0px 0px 2px 2px rgb(145, 168, 208);
+}

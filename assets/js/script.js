@@ -125,7 +125,7 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                 index++;
 
                 // end timer that calls and call for initial entry page
-                if(index === allQuest.length){
+                if(index === allQuest.length || timer <= 0){
                     // clear both timers
                     clearTimeout(endQuestions);
                     clearInterval(timerInt);
@@ -145,7 +145,7 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
             document.querySelector("#" + choices[i]).addEventListener('click', function(){
 
                 // subtract time penalty
-                timer = timer - 10;
+                timer = timer - 15;
 
                 // fix prev timer for entry page to match new timer
                 clearTimeout(endQuestions);
@@ -157,7 +157,7 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                 }
 
                 // add text, so user knows if answer was wrong
-                document.querySelector("#result").textContent = "INCORRECT! Ten seconds has been deducted from your time!";
+                document.querySelector("#result").textContent = "INCORRECT! 15 seconds have been deducted from your time!";
 
                 // will clear message after 1 second
                 setTimeout(function(){
@@ -168,7 +168,7 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                 index++;
 
                 // end timer that calls and call for initial entry page
-                if(index === allQuest.length){
+                if(index === allQuest.length || timer <= 0){
                     // clear both timers
                     clearTimeout(endQuestions);
                     clearInterval(timerInt);
@@ -213,6 +213,11 @@ function showScoreEntry(){
     // go to initials entry
     questions.style.display = "none";
     scoreEntry.style.display = "contents";
+
+    if(timer < 0)
+    {
+        timer = 0;
+    }
 
     // updates time one last time
     timerEl.textContent = "Time: " + timer;
