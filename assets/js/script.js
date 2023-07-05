@@ -59,7 +59,7 @@ startEl.addEventListener('click', function (event) {
     // if start button pressed home page is replaced with questions
     event.preventDefault();
     main.style.display = "none";
-    questions.style.display = "contents";
+    questions.style.display = "flex";
 
     // Timer will count down from this number
     timer = 75;
@@ -212,7 +212,7 @@ function shuffleArray(choices) {
 function showScoreEntry(){
     // go to initials entry
     questions.style.display = "none";
-    scoreEntry.style.display = "contents";
+    scoreEntry.style.display = "flex";
 
     if(timer < 0)
     {

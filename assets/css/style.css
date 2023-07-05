@@ -17,10 +17,40 @@ header ul{
     padding: 10px;
 }
 
+header li{
+    color: #483066;
+}
+
+#highscore:hover{
+    color:#d8c6f0;
+}
+
+#highscore:active{
+    /* shadow outline */
+    box-shadow: 0px 0px 2px 2px rgb(145, 168, 208);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 div{
+    /* padding for everything with less on bottom */
+    padding: 10% 10% 1% 10%;
+}
+
+#display_main_page{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#display_questions{
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 h1{
@@ -29,9 +59,10 @@ h1{
 
 button{
     background-color: #483066;
-    color: #B49ED2;
+    color: #d8c6f0;
     margin: 2px;
     border-radius: 5px;
+    padding: 1px 5px;
 }
 
 button:hover{
