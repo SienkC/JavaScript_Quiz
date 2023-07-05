@@ -133,20 +133,36 @@ function showQuestions(questionNum) {
         // test
         console.log(temp);
 
-        // press button and remove recently added answers
         // take note of right/wrong
         // call function again with next question
 
         // if user chooses correct answer
         if(choices[i] === "correct"){
             document.querySelector("#" + choices[i]).addEventListener('click', function(){
+                // test
                 console.log(choices[i]);
+
+                // removes all created answer choices, so they wont be in next question
+                for(let i = 0; i < choices.length; i++){
+                    document.querySelector("#answers").children[0].remove();
+                }
+
+                
             });
         }
         // if user chooses a wrong answer
         else{
             document.querySelector("#" + choices[i]).addEventListener('click', function(){
+                // test
                 console.log(choices[i]);
+
+                // subtract time penalty
+                timer = timer - 10;
+
+                // removes all created answer choices, so they wont be in next question
+                for(let i = 0; i < choices.length; i++){
+                    document.querySelector("#answers").children[0].remove();
+                }
             });
         }
         
