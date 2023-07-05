@@ -10,6 +10,7 @@ var questions = document.querySelector("#display_questions");
 var scoreEntry = document.querySelector("#display_end");
 var timerEl = document.querySelector("#time");
 var submitE1 = document.querySelector("#submit");
+var userInitials = document.querySelector("#textarea");
 
 // list of questions
 const qAndA = {
@@ -228,6 +229,18 @@ function showScoreEntry(){
     // User submits initals
     submitE1.addEventListener('click', function (event) {
         // save initials typed in text box
+        var userInfo ={
+            name: userInitials.value,
+            score: timer
+        };
+
+        // check scores for values currently in storage (if any)
+        // compare score to prev scores and put in order
+        // update position in local storage
+        // remove lowest score if max scores are met
+
+        // test
+        localStorage.setItem("user" + 1, JSON.stringify(userInfo));
         // go to highscores page
     });
 }
