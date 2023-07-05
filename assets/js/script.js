@@ -147,7 +147,13 @@ function showQuestions(questionNum) {
                     document.querySelector("#answers").children[0].remove();
                 }
 
-                
+                // add text, so user knows if answer was correct
+                document.querySelector("#result").textContent = "CORRECT! Nice work!";
+
+                // will clear message after 1 second
+                setTimeout(function(){
+                    document.querySelector("#result").textContent = "";
+                }, 1000);
             });
         }
         // if user chooses a wrong answer
@@ -163,6 +169,14 @@ function showQuestions(questionNum) {
                 for(let i = 0; i < choices.length; i++){
                     document.querySelector("#answers").children[0].remove();
                 }
+
+                // add text, so user knows if answer was wrong
+                document.querySelector("#result").textContent = "INCORRECT! Ten seconds has been deducted from your time!";
+
+                // will clear message after 1 second
+                setTimeout(function(){
+                    document.querySelector("#result").textContent = "";
+                }, 1000);
             });
         }
         
