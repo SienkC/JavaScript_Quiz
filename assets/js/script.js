@@ -1,7 +1,4 @@
-// if start button pressed "display = none" for home page
-// loop through questions 
-// move onto next question when answer chosen and subtract from time if wrong
-// stop loop when time = 0
+// TO DO:
 // show score and allow user to enter initials
 // save score and initials to local storage
 // score will show on score page
@@ -14,6 +11,7 @@ var scoreEntry = document.querySelector("#display_end");
 var timerEl = document.querySelector("#time");
 var submitE1 = document.querySelector("#submit");
 
+// list of questions
 const qAndA = {
     q1: {
         question: "Commonly used data types DO NOT include:",
@@ -52,8 +50,6 @@ const qAndA = {
     }
 };
 
-// number of questions
-// var numQuest = Object.keys(qAndA).length;
 var allQuest = ["q1", "q2", "q3", "q4", "q5"];
 
 // timer is not in a function so it can be used everywhere
@@ -83,6 +79,7 @@ startEl.addEventListener('click', function (event) {
     // When timer reaches 0 before user answers all questions
     var endQuestions = setTimeout(showScoreEntry, timer * 1000);
 
+    // call for initial question
     showQuestions(qAndA[allQuest[0]], 0, endQuestions, timerInt);
 
     return;
@@ -106,12 +103,6 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
         temp.textContent = questionNum[choices[i]];
         temp.setAttribute("id", choices[i]);
         document.querySelector("#answers").children[i].appendChild(temp);
-
-        // test
-        console.log(temp);
-
-        // take note of right/wrong
-        // call function again with next question
 
         // if user chooses correct answer
         if(choices[i] === "correct"){
@@ -176,7 +167,6 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
                 // index for question number increases
                 index++;
 
-                // check for if this is last question and end recursion
                 // end timer that calls and call for initial entry page
                 if(index === allQuest.length){
                     // clear both timers
@@ -185,15 +175,14 @@ function showQuestions(questionNum, index, endQuestions, timerInt) {
 
                     // user brought to end
                     showScoreEntry();
+                    return;
                 }
 
                 // call next question
                 showQuestions(qAndA[allQuest[index]], index, endQuestions, timerInt);
             });
         }
-        
     }
-
     return;
 }
 
@@ -224,6 +213,9 @@ function showScoreEntry(){
     // go to initials entry
     questions.style.display = "none";
     scoreEntry.style.display = "contents";
+
+    // updates time one last time
+    timerEl.textContent = "Time: " + timer;
 
     // display score
     document.querySelector("#final_score").textContent = "Your final score is " + timer;
