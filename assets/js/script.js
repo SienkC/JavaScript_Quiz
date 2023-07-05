@@ -69,49 +69,26 @@ startEl.addEventListener('click', function (event) {
     timer = 75;
 
     // timer starts
-    timeLeft();
-    
-    // When timer reaches 0 before user answers all questions
-    var endQuestions = setTimeout(function(){
-        // user lost quiz
-        // go to initials entry
-        questions.style.display = "none";
-        scoreEntry.style.display = "contents";
-
-        // display score
-        document.querySelector("#final_score").textContent = "Your final score is " + timer;
-
-        // User submits initals
-        submitE1.addEventListener('click', function (event) {
-            // save initials typed in text box
-            // go to highscores page
-        });
-
-    }, timer * 1000);
-
-    showQuestions(qAndA[allQuest[0]]);
-
-    return;
-});
-
-
-// timer counts down every second (1000ms)
-function timeLeft(){
     var timerInt = setInterval(function() {
 
         timer--;
         timerEl.textContent = "Time: " + timer;
-        
 
         // Stops timer when it reaches 0
         if(timer === 0){
             clearInterval(timerInt);
         }
-
     }, 1000);
-}
+    
+    // When timer reaches 0 before user answers all questions
+    var endQuestions = setTimeout(showScoreEntry, timer * 1000);
 
-function showQuestions(questionNum) {
+    showQuestions(qAndA[allQuest[0]], 0, endQuestions, timerInt);
+
+    return;
+});
+
+function showQuestions(questionNum, index, endQuestions, timerInt) {
     // array for answer choices
     var choices = ["correct", "wrong1", "wrong2", "wrong3"];
 
@@ -139,8 +116,6 @@ function showQuestions(questionNum) {
         // if user chooses correct answer
         if(choices[i] === "correct"){
             document.querySelector("#" + choices[i]).addEventListener('click', function(){
-                // test
-                console.log(choices[i]);
 
                 // removes all created answer choices, so they wont be in next question
                 for(let i = 0; i < choices.length; i++){
@@ -154,16 +129,30 @@ function showQuestions(questionNum) {
                 setTimeout(function(){
                     document.querySelector("#result").textContent = "";
                 }, 1000);
+
+                // index for question number increases
+                index++;
+
+                // check for if this is last question and end recursion
+                // end timer that calls and call for initial entry page
+                if(index === allQuest.length){
+                    // clear both timers
+                    clearTimeout(endQuestions);
+                    clearInterval(timerInt);
+
+                    // user brought to end
+                    showScoreEntry();
+                }
             });
         }
         // if user chooses a wrong answer
         else{
             document.querySelector("#" + choices[i]).addEventListener('click', function(){
-                // test
-                console.log(choices[i]);
 
                 // subtract time penalty
                 timer = timer - 10;
+
+                // fix prev timer for entry page to match new timer
 
                 // removes all created answer choices, so they wont be in next question
                 for(let i = 0; i < choices.length; i++){
@@ -177,6 +166,20 @@ function showQuestions(questionNum) {
                 setTimeout(function(){
                     document.querySelector("#result").textContent = "";
                 }, 1000);
+
+                // index for question number increases
+                index++;
+
+                // check for if this is last question and end recursion
+                // end timer that calls and call for initial entry page
+                if(index === allQuest.length){
+                    // clear both timers
+                    clearTimeout(endQuestions);
+                    clearInterval(timerInt);
+
+                    // user brought to end
+                    showScoreEntry();
+                }
             });
         }
         
@@ -206,4 +209,19 @@ function shuffleArray(choices) {
     }
 
     return choices;
+}
+
+function showScoreEntry(){
+    // go to initials entry
+    questions.style.display = "none";
+    scoreEntry.style.display = "contents";
+
+    // display score
+    document.querySelector("#final_score").textContent = "Your final score is " + timer;
+
+    // User submits initals
+    submitE1.addEventListener('click', function (event) {
+        // save initials typed in text box
+        // go to highscores page
+    });
 }
