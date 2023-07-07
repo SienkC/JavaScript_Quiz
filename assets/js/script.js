@@ -237,13 +237,36 @@ function showScoreEntry(){
             score: timer
         };
 
+        var allScores = [];
+
+        // test
+        console.log(userInfo);
+
+        // grab scores currently in local storage
+        var prevScores = JSON.parse(localStorage.getItem("scores"));
+
+        // if there are any scores already in local storage
+        if(prevScores !== null){
+            prevScores.push(userInfo);
+            localStorage.setItem("scores", JSON.stringify(prevScores));
+        }
+
+        // add new score to array and add to local storage
+        else{
+            allScores.push(userInfo);
+            localStorage.setItem("scores", JSON.stringify(allScores));
+
+            // test
+            console.log(allScores);
+        }
+
         // check scores for values currently in storage (if any)
         // compare score to prev scores and put in order
         // update position in local storage
         // remove lowest score if max scores are met
 
         // test
-        localStorage.setItem("user" + 1, JSON.stringify(userInfo));
+        // localStorage.setItem("user" + 1, JSON.stringify(userInfo));
         // go to highscores page
     });
 }
