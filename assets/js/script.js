@@ -56,35 +56,38 @@ var allQuest = ["q1", "q2", "q3", "q4", "q5"];
 // timer is not in a function so it can be used everywhere
 var timer;
 
-startEl.addEventListener('click', function (event) {
-    // if start button pressed home page is replaced with questions
-    event.preventDefault();
-    main.style.display = "none";
-    questions.style.display = "flex";
-
-    // Timer will count down from this number
-    timer = 75;
-
-    // timer starts
-    var timerInt = setInterval(function() {
-
-        timer--;
-        timerEl.textContent = "Time: " + timer;
-
-        // Stops timer when it reaches 0
-        if(timer === 0){
-            clearInterval(timerInt);
-        }
-    }, 1000);
+if(startEl !== null){
+    startEl.addEventListener('click', function (event) {
+        // if start button pressed home page is replaced with questions
+        event.preventDefault();
+        main.style.display = "none";
+        questions.style.display = "flex";
     
-    // When timer reaches 0 before user answers all questions
-    var endQuestions = setTimeout(showScoreEntry, timer * 1000);
+        // Timer will count down from this number
+        timer = 75;
+    
+        // timer starts
+        var timerInt = setInterval(function() {
+    
+            timer--;
+            timerEl.textContent = "Time: " + timer;
+    
+            // Stops timer when it reaches 0
+            if(timer === 0){
+                clearInterval(timerInt);
+            }
+        }, 1000);
+        
+        // When timer reaches 0 before user answers all questions
+        var endQuestions = setTimeout(showScoreEntry, timer * 1000);
+    
+        // call for initial question
+        showQuestions(qAndA[allQuest[0]], 0, endQuestions, timerInt);
+    
+        return;
+    });
+}
 
-    // call for initial question
-    showQuestions(qAndA[allQuest[0]], 0, endQuestions, timerInt);
-
-    return;
-});
 
 function showQuestions(questionNum, index, endQuestions, timerInt) {
     // array for answer choices
