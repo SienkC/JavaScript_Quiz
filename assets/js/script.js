@@ -1,8 +1,3 @@
-// TO DO:
-// show score and allow user to enter initials
-// save score and initials to local storage
-// score will show on score page
-
 // Get elements from HTML
 var startEl = document.querySelector("#start");
 var main = document.querySelector("#display_main_page");
@@ -13,7 +8,6 @@ var submitEl = document.querySelector("#submit");
 var userInitials = document.querySelector("#textarea");
 var showScores = document.querySelector("#scores_list");
 var clearEl = document.querySelector("#clear");
-
 
 // list of questions
 const qAndA = {
@@ -250,9 +244,6 @@ function showScoreEntry(){
 
         var startScores = [];
 
-        // test
-        console.log(userInfo);
-
         // grab scores currently in local storage
         var prevScores = JSON.parse(localStorage.getItem("scores"));
 
@@ -266,9 +257,6 @@ function showScoreEntry(){
         else{
             startScores.push(userInfo);
             localStorage.setItem("scores", JSON.stringify(startScores));
-
-            // test
-            console.log(startScores);
         }
 
         // change current HTML page to scores page
