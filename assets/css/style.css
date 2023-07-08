@@ -1,7 +1,8 @@
-/* hide questions and score entry page on start */
-#display_questions,
-#display_end{
-    display: none;
+:root{
+    --light: #d8c6f0;
+    --dark: #483066;
+    --mid-color: #744fa1;
+    --button-highlight: rgb(145, 168, 208);
 }
 
 *{
@@ -18,16 +19,16 @@ header ul{
 }
 
 header li{
-    color: #483066;
+    color: var(--dark);
 }
 
 #highscore:hover{
-    color:#d8c6f0;
+    color: var(--light);
 }
 
 #highscore:active{
     /* shadow outline */
-    box-shadow: 0px 0px 2px 2px rgb(145, 168, 208);
+    box-shadow: 0px 0px 2px 2px var(--button-highlight);
 }
 
 main{
@@ -42,16 +43,32 @@ div{
     padding: 10% 10% 1% 10%;
 }
 
-#display_main_page{
+#display_main_page,
+#score_page{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#display_questions{
+/* display: none hides questions and score entry page on start */
+#display_questions,
+#display_end {
     display: none;
     flex-direction: column;
+}
+
+#display_questions{
     align-items: flex-start;
+    border-bottom: 1px solid grey;
+}
+
+#display_end{
+    align-items: center;
+}
+
+#display_end h2,
+#display_end p{
+    text-align: left;
 }
 
 h1{
@@ -59,20 +76,48 @@ h1{
     text-align: center;
 }
 
+p{
+    padding: 10px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+ol{
+    padding: 10px;
+}
+
+ol li:nth-child(odd) {
+    background-color: var(--light);
+}
+
 button{
-    background-color: #483066;
-    color: #d8c6f0;
-    margin: 2px;
+    background-color: var(--dark);
+    color: var(--light);
+    margin: 5px;
     border-radius: 5px;
     padding: 1px 5px;
 }
 
 button:hover{
     /* highlight */
-    background-color: #744fa1;
+    background-color: var(--mid-color);
 }
 
 button:active{
     /* shadow outline */
-    box-shadow: 0px 0px 2px 2px rgb(145, 168, 208);
+    box-shadow: 0px 0px 2px 2px var(--button-highlight);
+}
+
+#result{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: grey;
+    padding: 5px;
+}
+
+#buttons{
+    display: flex;
+    justify-content: space-around;
 }
