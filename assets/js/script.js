@@ -247,10 +247,8 @@ function showScoreEntry(){
 
         // if there are any scores already in local storage
         if(prevScores !== null){
-            // function to look at all scores and sort
-            sortScores(prevScores, userInfo);
-
-            
+            // function to sort and add scores
+            sortScores(prevScores, userInfo);            
         }
 
         // add new score to array and add to local storage
@@ -262,20 +260,13 @@ function showScoreEntry(){
             console.log(allScores);
         }
 
-        // compare score to prev scores and put in order
-        // update position in local storage
-        // remove lowest score if max scores are met
-
-        // test
-        // localStorage.setItem("user" + 1, JSON.stringify(userInfo));
         // go to highscores page
+        location.replace("./component-scorepage.html");
     });
 }
 
+// sorts and adds new score to localstorage
 function sortScores(prevScores, userInfo){
-    // use splice to insert userinfo into index, so it is in correct order (big -> small)
-    // use loop to loop through array of scores and compare scores to users
-    // make index match first score that is less than users (unless users is smallest, in which it is pushed on)
     var newIndex = 0;
 
     // test
@@ -292,8 +283,10 @@ function sortScores(prevScores, userInfo){
     // test
     console.log("wow: " + newIndex);
 
-    localStorage.setItem("scores", JSON.stringify(prevScores));
+    // scores will only have top 10 scores
+    if(prevScores.length > 10){
+        prevScores.pop();
+    }
 
-    // keep 10 scores total, removing smallest, so score array is not too clunky
-    // if prevscores.length > 10, remove the last one
+    localStorage.setItem("scores", JSON.stringify(prevScores));
 }
