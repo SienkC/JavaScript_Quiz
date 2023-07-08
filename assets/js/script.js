@@ -250,8 +250,7 @@ function showScoreEntry(){
             // function to look at all scores and sort
             sortScores(prevScores, userInfo);
 
-            prevScores.push(userInfo);
-            localStorage.setItem("scores", JSON.stringify(prevScores));
+            
         }
 
         // add new score to array and add to local storage
@@ -277,6 +276,23 @@ function sortScores(prevScores, userInfo){
     // use splice to insert userinfo into index, so it is in correct order (big -> small)
     // use loop to loop through array of scores and compare scores to users
     // make index match first score that is less than users (unless users is smallest, in which it is pushed on)
+    var newIndex = 0;
+
+    // test
+    console.log(prevScores);
+
+    for(let i = 0; i < prevScores.length; i++){
+        if(userInfo["score"] <= prevScores[i]["score"]){
+            newIndex++;
+        }
+    }
+
+    prevScores.splice(newIndex, 0, userInfo);
+
+    // test
+    console.log("wow: " + newIndex);
+
+    localStorage.setItem("scores", JSON.stringify(prevScores));
 
     // keep 10 scores total, removing smallest, so score array is not too clunky
     // if prevscores.length > 10, remove the last one
