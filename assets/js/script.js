@@ -11,6 +11,7 @@ var scoreEntry = document.querySelector("#display_end");
 var timerEl = document.querySelector("#time");
 var submitE1 = document.querySelector("#submit");
 var userInitials = document.querySelector("#textarea");
+var showScores = document.querySelector("#scores_list");
 
 // list of questions
 const qAndA = {
@@ -260,8 +261,8 @@ function showScoreEntry(){
             console.log(allScores);
         }
 
-        // go to highscores page
-        location.replace("./component-scorepage.html");
+        // go to highscores page and add scores
+        highScoreDisplay();
     });
 }
 
@@ -289,4 +290,13 @@ function sortScores(prevScores, userInfo){
     }
 
     localStorage.setItem("scores", JSON.stringify(prevScores));
+}
+
+function highScoreDisplay(){
+    location.replace("./component-scorepage.html");
+
+    // loop through localstorage objs and create li for each one
+    // format: name - score
+
+    // var tag = document.createElement(tagName);
 }
