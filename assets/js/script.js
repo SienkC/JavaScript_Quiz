@@ -242,6 +242,11 @@ function showScoreEntry(){
             score: timer
         };
 
+        // if user doesn't enter initials
+        if(userInitials.value === null || userInitials.value === ""){
+            userInfo["name"] = "ANON";
+        }
+
         var startScores = [];
 
         // grab scores currently in local storage
