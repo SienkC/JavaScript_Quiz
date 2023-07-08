@@ -8,14 +8,15 @@
     <title>High Scores</title>
 </head>
 
-<body>
+<!-- function grabs all scores in localstorage and adds them to page -->
+<body onload="highScoreDisplay()">
     <main>
         <h1>Top 10 High Scores</h1>
         <ol id="scores_list"></ol>
         <div id="buttons">
             <!-- goes back to game page -->
             <button onclick="location.href='./index.html'" type="button">Go Back</button>
-            <button>Clear High Scores</button>
+            <button id="clear">Clear High Scores</button>
         </div>
     </main>
 

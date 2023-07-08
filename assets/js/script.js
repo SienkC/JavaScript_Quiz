@@ -9,9 +9,11 @@ var main = document.querySelector("#display_main_page");
 var questions = document.querySelector("#display_questions");
 var scoreEntry = document.querySelector("#display_end");
 var timerEl = document.querySelector("#time");
-var submitE1 = document.querySelector("#submit");
+var submitEl = document.querySelector("#submit");
 var userInitials = document.querySelector("#textarea");
 var showScores = document.querySelector("#scores_list");
+var clearEl = document.querySelector("#clear");
+
 
 // list of questions
 const qAndA = {
@@ -86,6 +88,14 @@ if(startEl !== null){
         showQuestions(qAndA[allQuest[0]], 0, endQuestions, timerInt);
     
         return;
+    });
+}
+
+// clear local storage and reload page
+if(clearEl !== null){
+    clearEl.addEventListener('click', function (event) {
+        localStorage.clear();
+        location.reload();
     });
 }
 
@@ -231,14 +241,14 @@ function showScoreEntry(){
     document.querySelector("#final_score").textContent = "Your final score is " + timer;
 
     // User submits initals
-    submitE1.addEventListener('click', function (event) {
+    submitEl.addEventListener('click', function (event) {
         // save initials typed in text box
         var userInfo ={
             name: userInitials.value,
             score: timer
         };
 
-        var allScores = [];
+        var startScores = [];
 
         // test
         console.log(userInfo);
@@ -254,24 +264,21 @@ function showScoreEntry(){
 
         // add new score to array and add to local storage
         else{
-            allScores.push(userInfo);
-            localStorage.setItem("scores", JSON.stringify(allScores));
+            startScores.push(userInfo);
+            localStorage.setItem("scores", JSON.stringify(startScores));
 
             // test
-            console.log(allScores);
+            console.log(startScores);
         }
 
-        // go to highscores page and add scores
-        highScoreDisplay();
+        // change current HTML page to scores page
+        location.replace("./component-scorepage.html");
     });
 }
 
 // sorts and adds new score to localstorage
 function sortScores(prevScores, userInfo){
     var newIndex = 0;
-
-    // test
-    console.log(prevScores);
 
     for(let i = 0; i < prevScores.length; i++){
         if(userInfo["score"] <= prevScores[i]["score"]){
@@ -281,9 +288,6 @@ function sortScores(prevScores, userInfo){
 
     prevScores.splice(newIndex, 0, userInfo);
 
-    // test
-    console.log("wow: " + newIndex);
-
     // scores will only have top 10 scores
     if(prevScores.length > 10){
         prevScores.pop();
@@ -292,11 +296,21 @@ function sortScores(prevScores, userInfo){
     localStorage.setItem("scores", JSON.stringify(prevScores));
 }
 
+// called in HTML when high score page is loaded
 function highScoreDisplay(){
-    location.replace("./component-scorepage.html");
+    // remove any current lis if there are any
+    showScores.innerHTML = "";
 
-    // loop through localstorage objs and create li for each one
-    // format: name - score
+    // grab all scores from local storage
+    var allScores = JSON.parse(localStorage.getItem("scores"));
 
-    // var tag = document.createElement(tagName);
+    // add scores to HTML
+    if (allScores !== null){
+        for(let i = 0; i < allScores.length; i++){
+            var Userscore = document.createElement("li");
+            Userscore.textContent = allScores[i]["name"] + " - " + allScores[i]["score"];
+            showScores.appendChild(Userscore);
+        }
+    }
+    
 }
