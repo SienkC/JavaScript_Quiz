@@ -18,7 +18,7 @@ To use the JavaScript Quiz page, load webpage and click the button titled "Start
 
 A page showing the top 10 scores saved will appear after submitting initials, but can also be viewed by clicking the "View Highscores" button at the top left of the page.
 
-Link to the webpage: [JavaScript Quiz]()
+Link to the webpage: [JavaScript Quiz](https://sienkc.github.io/JavaScript_Quiz/index.html)
 
 Screenshot with generated random password:
 ![Screenshot of Start Page](assets/images/screenshot.png)
